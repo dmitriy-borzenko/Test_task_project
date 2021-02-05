@@ -1,0 +1,30 @@
+<div class="container">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Active Column -->
+    <ng-container matColumnDef="active">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Active </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox id="{{element.id}}" color="primary" (change)="onChange($event)" [(ngModel)]="element.active">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'make-grey': row.active }"></tr>
+  </table>
+
+  <button color="primary" (click)="openDialog()" class="button__total" mat-raised-button>Total</button>
+</div>
